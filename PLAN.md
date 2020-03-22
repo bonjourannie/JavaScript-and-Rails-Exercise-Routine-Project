@@ -2,7 +2,7 @@ Class responsibilities
 RoutineAPI
 static getRoutines()
 static getRoutineShow(routineId) This class is used for communicating with our API and formatting the responses in such a way that we can easily create instances of our ViewModel classes (Routine & Exercise).
-Album
+Routine
 static getAll()
 static findById(id)
 getRoutineDetails()
@@ -11,7 +11,7 @@ renderCard()
 This class is a view model for Routines. It will store all of the attributes we need to display a routine in the two different contexts in which it will appear. We'll have separate methods for displaying a routine on the show page, vs the grid page.
 We will also persist Routines using a save() method so that we don't have to fetch the same routine from the database multiple times.
 Routine could also have a static findOrCreateBy method (maybe?)
-Because we're saving Routines, we'll also have static methods that we can use to find stored routines. (This will be useful for example when we want to see the show page for a routine, we can click on a link that has a data attribute pointing to the Routine's id, and we can use that id to find the existing album, so we can get the markup for the show page for that album.)
+Because we're saving Routines, we'll also have static methods that we can use to find stored routines. (This will be useful for example when we want to see the show page for a routine, we can click on a link that has a data attribute pointing to the Routine's id, and we can use that id to find the existing routine, so we can get the markup for the show page for that routine.)
 Routine will have a getExercises() method that will get the exercises for this routine (if necessary)
 Routine will have an exercises() method that will look through Exercise.all to find all of the exercises that match that routine's id.
 Exercise
@@ -19,7 +19,7 @@ static findOrCreateBy(attributes)
 save()
 render()
 This class is a view model for Exercises. It will store all of the attributes we need to display a exercise on the routine show page. We could have a exercises index, which might have a different view (this would want to include the routine as well)
-Exercise will have a save() method to handle persistence and we'll have a findOrCreateBy method that make sure we don't add the same track more than once.
+Exercise will have a save() method to handle persistence and we'll have a findOrCreateBy method that make sure we don't add the same exercise more than once.
 RoutinesPage
 renderForm()
 renderList()
@@ -61,7 +61,7 @@ get '/routines', to: 'routines#index'
 get '/routines/:id', to: 'routines#show'
 post '/routines', to: 'routines#create'
 post '/routines/:routine_id/exercises', to: 'exercises#create'
-We'll have a RoutineAPI class that knows how to make requests to these endpoints and return the response in JSON format. The get '/routines' endpoint will return an index of the routines without the exercises included. The get '/routines/:id endpoint will include routine details in addition to the routine's exercises (has_many requirement). The post '/routines' endpoint will allow us to create a routine and add it to our database The post '/routines/:routine_id/exercises' endpoint will allow to add an exercise to an existing track.
+We'll have a RoutineAPI class that knows how to make requests to these endpoints and return the response in JSON format. The get '/routines' endpoint will return an index of the routines without the exercises included. The get '/routines/:id endpoint will include routine details in addition to the routine's exercises (has_many requirement). The post '/routines' endpoint will allow us to create a routine and add it to our database The post '/routines/:routine_id/exercises' endpoint will allow to add an exercise to an existing exercise.
 
 Storing information (state) in our program.
 When we make requests to our API, we'll use the responses to create instances of our Routine and Exercise classes and store them in memory (within JS variables). We'll do this

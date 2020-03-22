@@ -8,7 +8,7 @@ static findById(id) - return routine instance (from Routine.all) that matches th
 static create(attributes) - submit API call, use response to create a new Routine instance, add it to Routine.all and return a promise for the instance.
 save() - adds an routine instance to Routine.all and returns it
 getRoutineDetails() - returns promise for routine and exercise details (with API call if needed)
-exercises() - returns array of Exercise instances related to this albroutineum (from Exercise.all)
+exercises() - returns array of Exercise instances related to this routine (from Exercise.all)
 renderCard() - returns string of html for rendering a single routine (grid view)
 Exercise
 static findOrCreateBy(attributes) - returns an existing exercise instance (matched by id) or creates a new one and returns it
